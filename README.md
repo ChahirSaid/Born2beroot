@@ -1,2 +1,2 @@
-# Born2beroot
-Born in Beyrouth
+# FAQ
+to be updated...
