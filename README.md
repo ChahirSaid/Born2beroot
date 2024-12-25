@@ -1,6 +1,6 @@
 <div align="center">
 
-![Born2beRoot](https://img.shields.io/badge/Born_2be_Root!-blue?style=for-the-badge)
+![Born2beRoot](https://img.shields.io/badge/Born_to_be_Root!-blue?style=for-the-badge)
 
 </div>
 
