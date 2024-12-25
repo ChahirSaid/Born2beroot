@@ -1,5 +1,7 @@
 # FAQ
 
+## **work still in progress i'll keep adding more each day contributions are always welcome**
+
 ## **What happens when you turn on your pc?**
 
 When you turn on a PC, several steps occur in sequence as the system initializes. Here's a breakdown of the process:
