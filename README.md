@@ -1,57 +1,467 @@
+<div align="center">
+
+![Born2beRoot](https://img.shields.io/badge/Thank_you_for_contributing!-yellow?style=for-the-badge)
+
+</div>
+
 # FAQ
 
-## **work still in progress i'll keep adding more each day contributions are always welcome**
+Essential questions and answers that arose during the Born2beRoot project development and implementation. This section aims to address common queries and provide helpful insights for project execution.
 
-## **What happens when you turn on your pc?**
+## What Happens When You Turn On Your PC?
 
-When you turn on a PC, several steps occur in sequence as the system initializes. Here's a breakdown of the process:
+When you turn on a PC, a complex sequence of events occurs as the system initializes. This guide provides a detailed breakdown of the process, incorporating modern technologies and security considerations.
 
-1. **Power-On Self-Test (POST):**
-    The **POST** is the first thing that happens when you power on the computer. It's a diagnostic process performed by the system's **BIOS** or **UEFI** firmware.
-    - **Role:** The **POST** ensures that the hardware components required to run the system are working properly before the operating system (OS) is loaded.
-    - **What is checked?**
-        - **CPU:** Verifies that the central processing unit (CPU) is functional.
-        - **RAM:** Checks if the system's memory (RAM) is present and functional.
-        - **Storage Devices:** Ensures that devices like the hard drive (HDD) or solid-state drive (SSD) are connected and operational.
-        - **Graphics:** Checks if the video card or integrated graphics is functioning.
-        - **Peripherals:** Tests other components like the keyboard, mouse, and sometimes network adapters.
-        - **Basic I/O:** Ensures that the basic input/output systems (keyboard, display, etc.) are working and ready to interact with the user.
-    If any critical hardware fails during ==POST==, the system may display an error message or series of beeps (known as 'beep codes') indicating the problem. If everything passes, the system continues to the next stage.
-2. **UEFI/BIOS Initialization**
-    Once the **POST** is complete, the **BIOS (Basic Input/Output System)** or **UEFI (Unified Extensible Firmware Interface)** comes into play. **BIOS** is the traditional firmware that was used in older systems, but it has largely been replaced by **UEFI** in modern systems.
-    - **What BIOS/UEFI does:**
-        - **System Configuration:** The **BIOS/UEFI** loads configuration data stored in a non-volatile memory chip (often on the motherboard). This includes settings like **boot order**, **hardware configurations**, **system time**, and **password protection**.
-            1. **Boot Order:**
-                - **Definition:** The boot order refers to the sequence in which the BIOS/UEFI looks for devices to boot the operating system from when the computer is powered on.
-                - **What it does:** The system checks each device in the specified order to find a bootable medium (e.g., hard drive, SSD, CD/DVD, USB flash drive). If the first device in the list doesn’t have a bootable OS, it moves to the next device in the order, and so on.
-                - **Example:** If the boot order is set to "USB > CD/DVD > Hard Drive", the BIOS will first attempt to boot from a USB device. If none is found, it will try the CD/DVD drive before finally checking the hard drive.
-            2. **Hardware Configurations:**
-                - **Definition:** Hardware configurations refer to the settings and parameters that control how the computer’s hardware components (like CPU, RAM, storage devices, and graphics card) are recognized and initialized.
-                - **What it does:** The BIOS/UEFI can be used to configure various hardware settings, including:
-                    - Enabling or disabling certain hardware components (e.g., integrated graphics, Wi-Fi, USB ports).
-                    - Setting parameters like memory timings, processor settings, and storage modes (e.g., AHCI or RAID for hard drives).
-                - **Example:** If you want to enable or disable the integrated graphics card or adjust the amount of system RAM allocated to the integrated GPU, you can change these settings in the BIOS/UEFI.
-            3. **System Time:**
-                - **Definition:** System time refers to the date and time stored in the BIOS/UEFI, which helps the system track and maintain accurate time.
-                - **What it does:** The BIOS/UEFI keeps track of the current time and date, which is important for logging events, scheduling tasks, and timestamping files. It also ensures that the system's clock starts at the correct time when the computer is powered on.
-                - **Example:** When you turn on the computer, the BIOS/UEFI ensures that the date and time are correct. If the system time is incorrect, you can change it in the BIOS/UEFI settings.
-            4. **Password Protection:**
-                - **Definition:** Password protection in BIOS/UEFI refers to security settings that restrict access to certain system configurations or the entire computer.
-                - **What it does:** It allows users to set passwords to prevent unauthorized access to the BIOS/UEFI settings or to the system itself during startup. Common options include:
-                    - **Administrator password:** Prevents unauthorized users from accessing and changing the BIOS/UEFI settings.
-                    - **User password:** Requires a password to boot the system, providing an additional layer of security.
-                - **Example:** Setting a supervisor (admin) password ensures that no one can change critical settings in the BIOS/UEFI, while a system password can be used to prevent unauthorized access to the computer.
-            These features, together, help configure how a system behaves at startup and ensure security and customization for the user.
-        - **Hardware Initialization:** It initializes hardware like the CPU, chipset, memory controllers, and input/output systems. This step ensures that all the system's hardware can communicate properly with the operating system once it loads.
-        - **Boot Process:** The **BIOS/UEFI** determines the sequence of devices it will check to find an operating system. This could be a hard drive, SSD, optical drive, USB drive, or network location.
-        - **Secure Boot (UEFI only):** **UEFI** also has a security feature called Secure Boot, which ensures that only trusted software (such as an OS loader that is signed by a recognized certificate) can be loaded, preventing malware from interfering with the boot process.
-After all the necessary initialization is complete, the BIOS/UEFI will look for a bootloader (the program that will load the operating system) on the boot device, and hand over control to it.
-    - **Where is the BIOS/UEFI stored?**
-    The **BIOS/UEFI** firmware is typically stored in a non-volatile memory chip on the motherboard, often referred to as a flash memory chip or EEPROM (Electrically Erasable Programmable Read-Only Memory).
-        - **BIOS:** In older systems, it was usually stored in ROM (Read-Only Memory) chips, which are non-volatile and could not be easily updated.
-        - **UEFI:** Modern systems with UEFI often store the firmware in a flash chip, which can be updated (or "flashed") as needed. This allows for firmware updates, bug fixes, and new features.
-    The storage location is physically on the motherboard, and the firmware is loaded into system memory (RAM) when the computer powers on to begin the boot process.
+---
 
-## **Is it the same as running a virtual machine?**
+### **1. Power-On Self-Test (POST)**
 
-## Other uses for Bios apart from the above
+The POST is the first diagnostic process initiated when you power on the computer, performed by the system's BIOS or UEFI firmware.
+
+#### **Purpose and Function:**
+
+- **Primary Role:** Validates critical hardware functionality before OS loading
+- **Execution Time:** Typically takes 5-30 seconds depending on hardware configuration
+- **Error Handling:** Uses visual displays or beep codes to communicate issues
+
+#### **Component Verification:**
+
+- **CPU:**
+  - Validates processor functionality
+  - Checks clock speeds and cache
+  - Verifies thermal management systems
+- **RAM:**
+  - Performs memory presence detection
+  - Validates memory timing and stability
+  - Checks for bad memory sectors
+- **Storage Devices:**
+  - Identifies connected storage devices
+  - Verifies drive controller functionality
+  - Checks NVMe, SATA, or IDE interfaces
+- **Graphics:**
+  - Initializes display adapter
+  - Checks video memory
+  - Validates display output capabilities
+- **Peripherals:**
+  - Tests USB controllers
+  - Validates keyboard and mouse functionality
+  - Checks network interfaces
+- **System Management:**
+  - Monitors power supply status
+  - Checks fan operation
+  - Verifies temperature sensors
+
+---
+
+### **2. UEFI/BIOS Initialization**
+
+Once the POST is complete, the BIOS or UEFI comes into play.
+Modern systems predominantly use UEFI, though understanding traditional BIOS features remains important for maintaining older systems and understanding PC architecture evolution.
+
+#### **Traditional BIOS Features:**
+
+1. **Basic Configuration:**
+   - **Clock Settings:**
+     - Real-time clock adjustment
+     - Date and time configuration
+     - Time zone settings
+   - **Boot Configuration:**
+     - Boot device priority
+     - Quick boot options
+     - Boot failure handling
+
+2. **Hardware Management:**
+   - **CPU Settings:**
+     - Clock speed control
+     - Cache management
+     - Core enabling/disabling
+   - **Memory Settings:**
+     - Memory timing configuration
+     - Memory frequency adjustment
+     - Memory testing options
+   - **PCI Configuration:**
+     - IRQ assignments
+     - I/O port configuration
+     - PCI slot control
+
+3. **Power Management:**
+   - **ACPI Settings:**
+     - Sleep states configuration
+     - Power button behavior
+     - Wake-on events
+   - **APM Features:**
+     - Legacy power management
+     - Standby mode settings
+     - Resume by alarm
+
+4. **Integrated Peripherals:**
+   - **Storage Controllers:**
+     - IDE configuration
+     - SATA operation modes
+     - Floppy controller settings
+   - **I/O Ports:**
+     - Serial port setup
+     - Parallel port modes
+     - USB configuration
+   - **Audio & Network:**
+     - Onboard audio control
+     - Network boot ROM
+     - MAC address display
+
+5. **Security Features:**
+   - **Password Protection:**
+     - Supervisor password
+     - User password
+     - Hard disk password
+   - **Anti-Virus:**
+     - Boot sector protection
+     - Virus warning
+   - **System Security:**
+     - CPU feature control
+     - System guard
+     - chassis intrusion detection
+
+6. **Monitoring Features:**
+   - **Hardware Monitor:**
+     - CPU temperature
+     - System fan speeds
+     - Voltage readings
+   - **Smart Fan Control:**
+     - Fan speed thresholds
+     - Temperature triggers
+     - Quiet mode settings
+
+7. **Legacy Support:**
+   - **Boot Options:**
+     - Legacy USB support
+     - CSM (Compatibility Support Module)
+     - OS type selection
+   - **Device Emulation:**
+     - Legacy diskette emulation
+     - Legacy keyboard support
+     - Legacy video support
+
+#### **Advanced UEFI Features:**
+
+1. **Enhanced Security:**
+   - Secure Boot validation
+   - TPM (Trusted Platform Module) integration
+   - Hardware root of trust
+   - Measured boot process
+
+2. **Modern Interface:**
+   - GUI-based configuration
+   - Mouse support
+   - Remote management capabilities
+   - Network boot options
+
+3. **Advanced Configurations:**
+   - **Power Management:**
+     - C-State control
+     - P-State management
+     - Fan curve customization
+   - **Memory:**
+     - XMP profiles
+     - Memory timing control
+     - ECC support
+   - **Storage:**
+     - NVMe configuration
+     - RAID setup
+     - Storage encryption options
+
+---
+
+### **BIOS/UEFI Storage Architecture**
+
+Understanding where and how BIOS/UEFI is stored is crucial for system maintenance and troubleshooting.
+
+#### **1. Physical Storage Location:**
+
+- **Traditional BIOS:**
+  - ROM (Read-Only Memory) chip
+  - EPROM (Erasable Programmable ROM)
+  - EEPROM (Electrically Erasable PROM)
+  - Flash ROM (most common in later BIOS systems)
+
+- **Modern UEFI:**
+  - SPI Flash memory
+  - NOR Flash devices
+  - Redundant storage areas
+  - Protected storage regions
+
+#### **2. Storage Characteristics:**
+
+- **Capacity:**
+  - BIOS: 256KB to 4MB
+  - UEFI: 4MB to 32MB typical
+  - Multiple firmware volumes
+  - Separate configuration storage
+
+- **Access Methods:**
+  - Memory-mapped access
+  - I/O port access
+  - SPI protocol communication
+  - Protected mode access
+
+#### **3. Security Features:**
+
+- **Write Protection:**
+  - Hardware write protection
+  - Software write protection
+  - Boot block protection
+  - Sector-level locking
+
+- **Integrity Measures:**
+  - Checksum verification
+  - Digital signatures
+  - Secure boot keys
+  - Recovery images
+
+#### **4. Update Mechanism:**
+
+- **Flashing Process:**
+  - Vendor-specific tools
+  - Emergency recovery options
+  - Dual BIOS support
+  - Update verification
+
+- **Safety Features:**
+  - Power loss protection
+  - Rollback prevention
+  - Version control
+  - Backup creation
+
+#### **5. Storage Organization:**
+
+- **Memory Map:**
+  - Boot block region
+  - Main firmware region
+  - Configuration data
+  - Management engine firmware
+  - Platform data
+
+- **Component Integration:**
+  - Microcode updates
+  - Option ROMs
+  - RAID firmware
+  - Network boot code
+
+#### **6. Advanced Features:**
+
+- **Redundancy:**
+  - Backup firmware copy
+  - Recovery mechanisms
+  - Automatic failover
+  - Error correction
+
+- **Management:**
+  - Remote update capability
+  - Health monitoring
+  - Logging functions
+  - Configuration management
+
+---
+
+### **CMOS and Its Critical Role**
+
+The CMOS (Complementary Metal-Oxide-Semiconductor) plays a vital role in maintaining system configuration persistence. Understanding its functions and maintenance is crucial for system stability.
+
+#### **1. CMOS Architecture:**
+
+- **Physical Structure:**
+  - Silicon-based integrated circuit
+  - Low power consumption design
+  - Typically located near the BIOS chip
+  - Contains real-time clock (RTC) circuit
+
+- **Memory Organization:**
+  - 128 or 256 bytes of storage
+  - Checksum verification
+  - Non-volatile storage areas
+  - Protected register sections
+
+#### **2. Stored Information:**
+
+- **System Configuration:**
+  - Boot sequence settings
+  - Drive configurations
+  - Memory timings
+  - CPU settings
+  - Power management options
+
+- **Hardware Settings:**
+  - Port configurations
+  - Integrated peripheral states
+  - Memory cache settings
+  - System passwords
+  - Fan control parameters
+
+#### **3. Power Management:**
+
+- **Battery Specifications:**
+  - CR2032 3V lithium battery
+  - Expected lifespan: 5-10 years
+  - Temperature-dependent longevity
+  - Voltage monitoring capability
+
+- **Power Backup:**
+  - Maintains settings during power off
+  - Supports RTC operation
+  - Provides stable voltage reference
+  - Enables quick boot capability
+
+#### **4. Troubleshooting and Maintenance:**
+
+- **Common Issues:**
+  - Clock reset symptoms
+  - Configuration loss
+  - Boot failures
+  - Checksum errors
+  - Strange hardware behavior
+
+- **Resolution Methods:**
+  - Battery replacement procedure
+  - CMOS reset techniques
+  - Jumper configuration
+  - Software reset options
+
+#### **5. Modern Implementations:**
+
+- **Evolution:**
+  - Integration with UEFI systems
+  - Enhanced security features
+  - Expanded storage capacity
+  - Improved reliability
+
+- **Advanced Features:**
+  - Automatic configuration backup
+  - Error logging capabilities
+  - Remote management support
+  - Configuration profiles
+
+---
+
+### **3. Boot Process Evolution**
+
+#### **Modern Boot Sequence:**
+
+1. **Fast Boot Technology:**
+   - Skips unnecessary POST tests
+   - Maintains hardware state information
+   - Reduces boot time significantly
+
+2. **Multi-Boot Support:**
+   - Multiple OS management
+   - Boot menu customization
+   - Secure OS selection
+
+3. **Network Boot Options:**
+   - PXE boot capability
+   - Network-based recovery
+   - Remote deployment support
+
+---
+
+### **4. Advanced Security Features**
+
+#### **Modern Security Implementations:**
+
+1. **Hardware Security:**
+   - **TPM Integration:**
+     - Encryption key storage
+     - Platform integrity verification
+     - Secure boot chain validation
+
+   - **Secure Enclave:**
+     - Protected credential storage
+     - Biometric data handling
+     - Encryption acceleration
+
+2. **Boot Security:**
+   - **Measured Boot:**
+     - Validates boot component integrity
+     - Creates audit trail
+     - Enables remote attestation
+
+   - **Boot Guard:**
+     - Hardware-based root of trust
+     - Prevents unauthorized firmware modifications
+     - Protects against boot-level malware
+
+The section shows how BIOS, while more limited than UEFI, still provided essential configuration options for:
+
+- Basic system settings
+- Hardware management
+- Power configurations
+- Peripheral device control
+- Security features
+- System monitoring
+- Legacy support
+
+---
+
+### **5. Firmware Management**
+
+#### **Modern Firmware Considerations:**
+
+1. **Update Management:**
+   - Automatic firmware updates
+   - Rollback protection
+   - Update verification
+
+2. **Recovery Features:**
+   - Dual BIOS/UEFI
+   - Automatic recovery
+   - Emergency flash options
+
+3. **Configuration Management:**
+   - Profile-based settings
+   - Configuration backup
+   - Remote management capabilities
+
+---
+
+### **6. Troubleshooting Modern Systems**
+
+#### **Advanced Diagnostic Features:**
+
+1. **Built-in Diagnostics:**
+   - Hardware monitoring
+   - Performance analysis
+   - Error logging
+
+2. **Recovery Options:**
+   - Automatic repair
+   - System restore points
+   - Factory reset capabilities
+
+3. **Remote Management:**
+   - Out-of-band management
+   - Remote configuration
+   - System monitoring
+
+---
+
+### **Best Practices for System Management**
+
+1. **Regular Maintenance:**
+   - Keep firmware updated
+   - Monitor system logs
+   - Verify security settings
+
+2. **Performance Optimization:**
+   - Configure appropriate boot options
+   - Optimize startup programs
+   - Maintain proper cooling
+
+3. **Security Considerations:**
+   - Enable Secure Boot
+   - Configure TPM
+   - Set appropriate passwords
+
+4. **Documentation:**
+   - Record system configurations
+   - Document custom settings
+   - Maintain update history
+
+By understanding these modern aspects of PC initialization and management, users and administrators can better maintain, secure, and optimize their systems for optimal performance and reliability.
