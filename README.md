@@ -756,6 +756,8 @@ The boot process for virtual machines (VMs) differs from physical computers whil
   - Storage I/O control
 [Previous sections remain the same]
 
+---
+
 ## **Understanding Linux Distributions: Debian vs Rocky Linux**
 
 ### **1. Debian Overview:**
