@@ -1,6 +1,6 @@
 <div align="center">
 
-📘 ![Born 2 be Root](https://img.shields.io/badge/Born_2_be_Root-blue?style=flat&logo=linux&logoColor=white)
+![Born2beRoot](https://img.shields.io/badge/Born_to_be_Root!-blue?style=for-the-badge)
 
 </div>
 
