@@ -1422,6 +1422,154 @@ A server is a computer system or software that provides functionality, resources
 
 ---
 
+![Summary](https://img.shields.io/badge/Summary-teal?style=flat&logo=book&logoColor=white)
+
+# System Concepts Overview
+
+This document provides a comprehensive overview of computer systems, boot processes, virtualization, and server architectures.
+
+## Table of Contents
+
+- [Boot Process](#boot-process)
+- [Operating Systems](#operating-systems)
+- [Virtualization](#virtualization)
+- [Server Architecture](#server-architecture)
+
+## System Architecture Diagram
+
+```mermaid
+graph TD
+    subgraph "Physical Hardware"
+        HARDWARE[Computer Hardware]
+        BIOS[BIOS/UEFI]
+        CMOS[CMOS]
+        POST[Power-On Self Test]
+    end
+
+    subgraph "Boot Process"
+        BOOTLOADER1[Primary Bootloader]
+        BOOTLOADER2[Secondary Bootloader]
+        KERNEL[Kernel]
+        INIT[Init System]
+    end
+
+    subgraph "Operating System Types"
+        WINDOWS[Windows]
+        LINUX[Linux]
+        subgraph "Linux Distributions"
+            DEBIAN[Debian]
+            ROCKY[Rocky Linux]
+        end
+    end
+
+    subgraph "Virtualization Layer"
+        VIRTUAL[Virtualization]
+        HYPERV[Type 1 Hypervisor]
+        HYPERH[Type 2 Hypervisor]
+        VM[Virtual Machines]
+    end
+
+    subgraph "Server Types"
+        PHYSICAL[Physical Servers]
+        WEB[Web Servers]
+        DB[Database Servers]
+        FILE[File Servers]
+        APP[Application Servers]
+    end
+
+    %% Hardware relationships
+    HARDWARE --> POST
+    HARDWARE --> BIOS
+    BIOS --> CMOS
+
+    %% Boot sequence
+    POST --> BIOS
+    BIOS --> BOOTLOADER1
+    BOOTLOADER1 --> BOOTLOADER2
+    BOOTLOADER2 --> KERNEL
+    KERNEL --> INIT
+
+    %% OS relationships
+    KERNEL --> WINDOWS
+    KERNEL --> LINUX
+    LINUX --> DEBIAN
+    LINUX --> ROCKY
+
+    %% Virtualization relationships
+    HARDWARE --> VIRTUAL
+    VIRTUAL --> HYPERV
+    VIRTUAL --> HYPERH
+    HYPERV --> VM
+    HYPERH --> VM
+
+    %% Server relationships
+    HARDWARE --> PHYSICAL
+    PHYSICAL --> WEB
+    PHYSICAL --> DB
+    PHYSICAL --> FILE
+    PHYSICAL --> APP
+
+    %% Virtual to Server relationship
+    VM --> WEB
+    VM --> DB
+    VM --> FILE
+    VM --> APP
+
+style HARDWARE fill:#f9f,stroke:#333,stroke-width:2px
+style VIRTUAL fill:#bbf,stroke:#333,stroke-width:2px
+style KERNEL fill:#bfb,stroke:#333,stroke-width:2px
+style BIOS fill:#fbf,stroke:#333,stroke-width:2px
+```
+
+## Components Description
+
+### Boot Process
+
+1. **POST (Power-On Self-Test)**
+   - Initial hardware check
+   - Verifies basic system functionality
+
+2. **BIOS/UEFI**
+   - Initializes hardware
+   - Loads bootloader
+
+3. **Bootloader**
+   - Primary (Stage 1) and Secondary (Stage 2) bootloaders
+   - Loads the kernel
+
+4. **Kernel**
+   - Core of the operating system
+   - Manages hardware resources
+   - Controls system processes
+
+### Operating Systems
+
+- **Linux Distributions**
+  - Debian: Community-driven, stable
+  - Rocky: Enterprise-focused, RHEL-compatible
+
+### Virtualization
+
+- **Type 1 Hypervisor** (Bare Metal)
+- **Type 2 Hypervisor** (Hosted)
+- **Virtual Machines**
+
+### Server Types
+
+- Web Servers
+- Database Servers
+- File Servers
+- Application Servers
+
+## Color Legend
+
+- Pink: Hardware components
+- Blue: Virtualization components
+- Green: Kernel/OS components
+- Purple: Firmware components
+
+---
+
 🛠️ ![Setting Up](https://img.shields.io/badge/Setting_Up-orange?style=flat&logo=wrench&logoColor=white)
 
 ---
