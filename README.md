@@ -1,6 +1,6 @@
 <div align="center">
 
-![Born2beRoot](https://img.shields.io/badge/Born_to_be_Root!-blue?style=for-the-badge)
+📘 ![Born 2 be Root](https://img.shields.io/badge/Born_2_be_Root-blue?style=flat&logo=linux&logoColor=white)
 
 </div>
 
@@ -8,11 +8,11 @@
 
 Essential questions and answers that arose during the Born2beRoot project development and implementation. This section aims to address common queries and provide helpful insights for project execution.
 
-## General knowledge
+📚 ![General Knowledge](https://img.shields.io/badge/General_Knowledge-green?style=flat&logo=openbook&labelColor=green&logoColor=white)
 
 ---
 
-### What Happens When You Turn On Your PC, and Is It the Same for a Virtual Machine?
+## What Happens When You Turn On Your PC, and Is It the Same for a Virtual Machine?
 
 When you turn on a PC, a complex sequence of events occurs as the system initializes. This guide provides a detailed breakdown of the process, incorporating modern technologies and security considerations.
 
@@ -1213,4 +1213,8 @@ A server is a computer system or software that provides functionality, resources
 
 ---
 
-## Setting up
+🛠️ ![Setting Up](https://img.shields.io/badge/Setting_Up-orange?style=flat&logo=wrench&logoColor=white)
+
+---
+
+💻 ![Commands](https://img.shields.io/badge/Commands-purple?style=flat&logo=terminal&logoColor=white)
