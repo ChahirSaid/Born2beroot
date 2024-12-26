@@ -8,6 +8,71 @@
 
 Essential questions and answers that arose during the Born2beRoot project development and implementation. This section aims to address common queries and provide helpful insights for project execution.
 
+---
+
+# Table of Contents
+
+## 📚 General Knowledge
+
+- [What Happens When You Turn On Your PC?](#what-happens-when-you-turn-on-your-pc-and-is-it-the-same-for-a-virtual-machine)
+  - [Power-On Self-Test (POST)](#1-power-on-self-test-post)
+  - [UEFI/BIOS Initialization](#2-uefibios-initialization)
+  - [BIOS/UEFI Storage Architecture](#biosuefi-storage-architecture)
+  - [CMOS and Its Critical Role](#cmos-and-its-critical-role)
+  - [Boot Process Evolution and Bootloader Operation](#3-boot-process-evolution-and-bootloader-operation)
+  - [Advanced Security Features](#4-advanced-security-features)
+  - [Firmware Management](#5-firmware-management)
+
+## 🖥️ Virtualization
+
+- [Understanding Virtualization](#understanding-virtualization)
+  - [Core Concepts](#1-core-concepts)
+  - [Key Benefits](#2-key-benefits)
+  - [Virtualization Technologies](#3-virtualization-technologies)
+  
+- [Understanding Hypervisors](#understanding-hypervisors)
+  - [Types of Hypervisors](#1-types-of-hypervisors)
+  - [Core Functions](#2-core-functions)
+  - [Advanced Features](#3-advanced-features)
+  - [Hypervisor Architecture](#4-hypervisor-architecture)
+  - [Performance Considerations](#5-performance-considerations)
+  - [Security Features](#6-security-features)
+
+- [Virtual Machine Boot Process](#virtual-machine-boot-process)
+
+## 🖧 Servers
+
+- [Understanding Servers](#understanding-servers)
+  - [Types of Servers](#1-types-of-servers)
+  - [Server Architecture](#2-server-architecture)
+  - [Server Roles](#3-server-roles)
+  - [Server Management](#4-server-management)
+  - [Server Security](#5-server-security)
+  - [High Availability and Scaling](#6-high-availability-and-scaling)
+  - [Server Environments](#7-server-environments)
+
+## 🐧 Linux Distributions
+
+- [Understanding Linux Distributions: Debian vs Rocky Linux](#understanding-linux-distributions-debian-vs-rocky-linux)
+  - [Debian Overview](#1-debian-overview)
+  - [Rocky Linux Overview](#2-rocky-linux-overview)
+  - [Comparison and Use Cases](#3-comparison-and-use-cases)
+  - [Decision Factors](#4-decision-factors)
+  - [Technical Considerations](#5-technical-considerations)
+  - [Migration and Support](#6-migration-and-support)
+
+## 📊 Summary
+
+- [System Architecture Diagram](#system-architecture-diagram)
+- [Components Description](#components-description)
+  - [Boot Process](#boot-process)
+  - [Operating Systems](#operating-systems)
+  - [Virtualization](#virtualization)
+  - [Server Types](#server-types)
+  - [Color Legend](#color-legend)
+
+---
+
 📚 ![General Knowledge](https://img.shields.io/badge/General_Knowledge-green?style=flat&logo=openbook&labelColor=green&logoColor=white)
 
 ---
@@ -1423,17 +1488,6 @@ A server is a computer system or software that provides functionality, resources
 ---
 
 ![Summary](https://img.shields.io/badge/Summary-teal?style=flat&logo=book&logoColor=white)
-
-# System Concepts Overview
-
-This document provides a comprehensive overview of computer systems, boot processes, virtualization, and server architectures.
-
-## Table of Contents
-
-- [Boot Process](#boot-process)
-- [Operating Systems](#operating-systems)
-- [Virtualization](#virtualization)
-- [Server Architecture](#server-architecture)
 
 ## System Architecture Diagram
 
