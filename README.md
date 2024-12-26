@@ -8,7 +8,7 @@
 
 Essential questions and answers that arose during the Born2beRoot project development and implementation. This section aims to address common queries and provide helpful insights for project execution.
 
-## What Happens When You Turn On Your PC?
+## What Happens When You Turn On Your PC, and Is It the Same for a Virtual Machine?
 
 When you turn on a PC, a complex sequence of events occurs as the system initializes. This guide provides a detailed breakdown of the process, incorporating modern technologies and security considerations.
 
