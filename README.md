@@ -1,8 +1,6 @@
-<div align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&width=435&lines=Born+to+be+Root" alt="Typing SVG" /></a>
 
-![Born2beRoot](https://img.shields.io/badge/Born_to_be_Root!-blue?style=for-the-badge)
-
-</div>
+---
 
 # FAQ
 
@@ -1628,4 +1626,4 @@ style BIOS fill:#fbf,stroke:#333,stroke-width:2px
 
 ---
 
-💻 ![Commands](https://img.shields.io/badge/Commands-purple?style=flat&logo=terminal&logoColor=white)
+💻 ![Configuration](https://img.shields.io/badge/Configuration-purple?style=flat&logo=terminal&logoColor=white)
