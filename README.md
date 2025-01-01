@@ -1907,7 +1907,6 @@ sudo touch /usr/local/bin/monitoring.sh
 sudo chmod +x /usr/local/bin/monitoring.sh
 sudo crontab -e
 # Add: @reboot sleep 600 && /usr/local/bin/monitoring.sh
-#      */10 * * * * /usr/local/bin/monitoring.sh
 sudo crontab -l
 sudo nano /usr/local/bin/monitoring.sh
 ```
