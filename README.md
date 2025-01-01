@@ -1771,28 +1771,32 @@ Use manual partitioning with MiB/GiB units (accounts for 5% system reservation)
 
 💻 ![Configuration](https://img.shields.io/badge/Configuration-purple?style=flat&logo=terminal&logoColor=white)
 
-
 ## Key Concepts
 
 ### User Management Commands
+
 - `su -`: Full switch to root user (loads complete root environment)
 - `su`: Switch to root while keeping current user's environment variables
 
 ### System Updates
+
 - `apt update`: Updates package index
 - `apt upgrade`: Upgrades installed packages to latest versions
 
 ### SSH Installation
+
 - `openssh-server`: Complete SSH server package
 - `ssh`: Basic SSH client tools
 
 ### Service States
+
 - `enabled`: Service starts automatically on boot
 - `active`: Service currently running
 
 ## Configuration Steps
 
 ### 1. Initial Setup
+
 ```bash
 su -
 apt update
@@ -1803,6 +1807,7 @@ reboot
 ```
 
 ### 2. SSH Configuration
+
 ```bash
 sudo apt install openssh-server -y
 sudo service ssh status
@@ -1814,6 +1819,7 @@ sudo service ssh status
 ```
 
 ### 3. UFW Setup
+
 ```bash
 sudo apt install ufw -y
 sudo ufw enable
@@ -1822,6 +1828,7 @@ sudo ufw status
 ```
 
 ### 4. Hostname Configuration
+
 ```bash
 sudo hostnamectl set-hostname <newhostname>
 sudo nano /etc/hosts
@@ -1830,6 +1837,7 @@ sudo systemctl restart *
 ```
 
 ### 5. User Group Setup
+
 ```bash
 sudo addgroup user42
 sudo adduser <username> user42
@@ -1838,12 +1846,14 @@ sudo systemctl restart *
 ```
 
 ### 6. Password Policy Configuration
+
 ```bash
 sudo apt install libpam-pwquality -y
 sudo nano /etc/security/pwquality.conf
 ```
 
 Add/modify these settings:
+
 ```
 difok = 7
 minlen = 10
@@ -1856,6 +1866,7 @@ enforce_for_root
 ```
 
 Modify `/etc/login.defs`:
+
 ```bash
 sudo nano /etc/login.defs
 # Set: PASS_MAX_DAYS 30
@@ -1863,12 +1874,14 @@ sudo nano /etc/login.defs
 ```
 
 Apply to existing users:
+
 ```bash
 sudo chage -M 30 -m 2 root
 sudo chage -M 30 -m 2 <username>
 ```
 
 ### 7. Sudo Configuration
+
 ```bash
 sudo mkdir -p /var/log/sudo
 sudo chmod 700 /var/log/sudo
@@ -1876,6 +1889,7 @@ sudo visudo
 ```
 
 Add these settings:
+
 ```
 Defaults  passwd_tries=3
 Defaults  badpass_message="Invalid password!"
@@ -1887,13 +1901,28 @@ Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/
 ```
 
 ### 8. Monitoring Script Setup
+
 ```bash
 sudo touch /usr/local/bin/monitoring.sh
 sudo chmod +x /usr/local/bin/monitoring.sh
 sudo crontab -e
-# Add: */10 * * * * /usr/local/bin/monitoring.sh
+# Add: @reboot sleep 600 && /usr/local/bin/monitoring.sh
+#      */10 * * * * /usr/local/bin/monitoring.sh
 sudo crontab -l
 sudo nano /usr/local/bin/monitoring.sh
+```
+
+To interrupt the script, first find its process using ps then kill it
+
+```bash
+sudo ps aux | grep monitoring.sh
+sudo kill <PID>
+```
+
+Alternatively you can use pkill
+
+```bash
+sudo pkill -f monitoring.sh
 ```
 
 ---
