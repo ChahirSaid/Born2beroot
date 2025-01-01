@@ -1825,6 +1825,7 @@ sudo apt install ufw -y
 sudo ufw enable
 sudo ufw allow 4242
 sudo ufw status
+sudo systemctl resrart ufw
 ```
 
 ### 4. Hostname Configuration
