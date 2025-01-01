@@ -1898,7 +1898,6 @@ Defaults  log_input
 Defaults  log_output
 Defaults  iolog_dir="/var/log/sudo"
 Defaults  requiretty
-Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ```
 
 ### 8. Monitoring Script Setup
