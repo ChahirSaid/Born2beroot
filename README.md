@@ -81,7 +81,6 @@ Essential questions and answers that arose during the Born2beRoot project develo
   - [File Systems](#file-systems)
 
 - [System Installation](#system-installation)
-
   - [Mirror Selection](#mirror-selection)
   - [Software Configuration](#software-configuration)
 
@@ -92,6 +91,26 @@ Essential questions and answers that arose during the Born2beRoot project develo
   - [System Reserved Space](#system-reserved-space-5)
   - [File Structure](#file-structure)
   - [Archive Mirrors](#archive-mirrors)
+
+## 💻 Configuration
+
+- [Key Concepts](#key-concepts-1)
+  - [User Management Commands](#user-management-commands)
+  - [System Updates](#system-updates)
+  - [SSH Installation](#ssh-installation)
+  - [Service States](#service-states)
+
+- [Configuration Steps](#configuration-steps)
+  - [Initial Setup](#initial-setup-1)
+  - [SSH Configuration](#ssh-configuration)
+  - [UFW Setup](#ufw-setup)
+  - [Hostname Configuration](#hostname-configuration)
+  - [User Group Setup](#user-group-setup)
+  - [Password Policy Configuration](#password-policy-configuration)
+  - [Sudo Configuration](#sudo-configuration)
+  - [Monitoring Script Setup](#monitoring-script-setup)
+
+## ⭐ Bonus
 
 ---
 
@@ -1751,6 +1770,131 @@ Use manual partitioning with MiB/GiB units (accounts for 5% system reservation)
 ---
 
 💻 ![Configuration](https://img.shields.io/badge/Configuration-purple?style=flat&logo=terminal&logoColor=white)
+
+
+## Key Concepts
+
+### User Management Commands
+- `su -`: Full switch to root user (loads complete root environment)
+- `su`: Switch to root while keeping current user's environment variables
+
+### System Updates
+- `apt update`: Updates package index
+- `apt upgrade`: Upgrades installed packages to latest versions
+
+### SSH Installation
+- `openssh-server`: Complete SSH server package
+- `ssh`: Basic SSH client tools
+
+### Service States
+- `enabled`: Service starts automatically on boot
+- `active`: Service currently running
+
+## Configuration Steps
+
+### 1. Initial Setup
+```bash
+su -
+apt update
+apt upgrade
+apt install sudo
+adduser <username> sudo
+reboot
+```
+
+### 2. SSH Configuration
+```bash
+sudo apt install openssh-server -y
+sudo service ssh status
+sudo nano /etc/ssh/sshd_config
+# Change: Port 22 → 4242
+#         PermitRootLogin prohibit-password → no
+sudo service ssh restart
+sudo service ssh status
+```
+
+### 3. UFW Setup
+```bash
+sudo apt install ufw -y
+sudo ufw enable
+sudo ufw allow 4242
+sudo ufw status
+```
+
+### 4. Hostname Configuration
+```bash
+sudo hostnamectl set-hostname <newhostname>
+sudo nano /etc/hosts
+# Update hostname in DNS config
+sudo systemctl restart *
+```
+
+### 5. User Group Setup
+```bash
+sudo addgroup user42
+sudo adduser <username> user42
+getent group | grep 'user42'
+sudo systemctl restart *
+```
+
+### 6. Password Policy Configuration
+```bash
+sudo apt install libpam-pwquality -y
+sudo nano /etc/security/pwquality.conf
+```
+
+Add/modify these settings:
+```
+difok = 7
+minlen = 10
+dcredit = -1
+ucredit = -1
+lcredit = -1
+maxrepeat = 3
+usercheck = 1
+enforce_for_root
+```
+
+Modify `/etc/login.defs`:
+```bash
+sudo nano /etc/login.defs
+# Set: PASS_MAX_DAYS 30
+#      PASS_MIN_DAYS 2
+```
+
+Apply to existing users:
+```bash
+sudo chage -M 30 -m 2 root
+sudo chage -M 30 -m 2 <username>
+```
+
+### 7. Sudo Configuration
+```bash
+sudo mkdir -p /var/log/sudo
+sudo chmod 700 /var/log/sudo
+sudo visudo
+```
+
+Add these settings:
+```
+Defaults  passwd_tries=3
+Defaults  badpass_message="Invalid password!"
+Defaults  log_input
+Defaults  log_output
+Defaults  iolog_dir="/var/log/sudo"
+Defaults  requiretty
+Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+```
+
+### 8. Monitoring Script Setup
+```bash
+sudo touch /usr/local/bin/monitoring.sh
+sudo chmod +x /usr/local/bin/monitoring.sh
+sudo crontab -e
+# Add: */10 * * * * /usr/local/bin/monitoring.sh
+sudo crontab -l
+sudo nano /usr/local/bin/monitoring.sh
+```
 
 ---
 
