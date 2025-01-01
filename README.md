@@ -1842,7 +1842,7 @@ sudo systemctl restart *
 ```bash
 sudo addgroup user42
 sudo adduser <username> user42
-getent group | grep 'user42'
+getent group user42
 sudo systemctl restart *
 ```
 
