@@ -68,6 +68,30 @@ Essential questions and answers that arose during the Born2beRoot project develo
   - [Virtualization](#virtualization)
   - [Server Types](#server-types)
   - [Color Legend](#color-legend)
+  
+## 🛠️ Setting Up
+
+- [Initial Setup](#initial-setup)
+  - [Virtual Machine Creation](#virtual-machine-creation)
+  - [ISO Installation](#iso-installation)
+
+- [Disk Partitioning](#disk-partitioning)
+  - [Primary Partition](#primary-partition)
+  - [Encrypted Partition Setup](#encrypted-partition-setup)
+  - [File Systems](#file-systems)
+
+- [System Installation](#system-installation)
+
+  - [Mirror Selection](#mirror-selection)
+  - [Software Configuration](#software-configuration)
+
+- [Key Concepts](#key-concepts)
+  - [ISO Files](#iso-files)
+  - [LVM](#lvm-logical-volume-management)
+  - [Mount Points](#mount-points)
+  - [System Reserved Space](#system-reserved-space-5)
+  - [File Structure](#file-structure)
+  - [Archive Mirrors](#archive-mirrors)
 
 ---
 
@@ -1624,6 +1648,110 @@ style BIOS fill:#fbf,stroke:#333,stroke-width:2px
 
 🛠️ ![Setting Up](https://img.shields.io/badge/Setting_Up-orange?style=flat&logo=wrench&logoColor=white)
 
+## Initial Setup
+
+1. Install VirtualBox
+2. Create new VM with manual installation (skip unattended)
+3. Configure virtual hard disk: 30.8GB (bonus requirement)
+4. Boot Debian ISO, select "Install" (non-GUI)
+
+## Disk Partitioning
+
+Use manual partitioning with MiB/GiB units (accounts for 5% system reservation)
+
+### Primary Partition
+
+- Size: 500 MiB
+- Mount: /boot
+- Filesystem: ext4
+
+### Encrypted Partition Setup
+
+1. Encrypt remaining disk space
+2. Create LVM Group
+3. Create Logical Volumes:
+   - root
+   - swap
+   - home
+   - var
+   - srv
+   - tmp
+   - var-log
+
+### File Systems
+
+- All volumes except swap: ext4 journaling
+- Swap: swap file system
+
+## System Installation
+
+1. Skip additional media scan
+2. Select archive mirror: deb.debian.org
+3. Software selection: None (minimal install)
+
+## Key Concepts
+
+### ISO Files
+
+- Disk image format containing filesystem
+- Used for OS installation media
+- ISO 9660 standard format
+
+### LVM (Logical Volume Management)
+
+- Flexible disk management
+- Allows dynamic resizing
+- Manages storage pools
+- Supports snapshots
+
+### Mount Points
+
+- Directory where filesystem accessible
+- Hierarchical structure
+- Examples:
+  - /boot: Boot loader files
+  - /: Root filesystem
+  - /home: User directories
+  - /var: Variable data
+  - /tmp: Temporary files
+
+### System Reserved Space (5%)
+
+- Reserved for root user
+- Prevents filesystem fragmentation
+- Ensures system stability
+- Critical for system recovery
+
+### File Structure
+
+#### ext4 Journaling
+
+- Journaling filesystem
+- Crash recovery
+- Enhanced reliability
+- Improved performance
+
+#### Key Directories
+
+- /boot: Kernel and boot files
+- /root: System administration
+- /home: User data
+- /var: Variable data
+- /srv: Service data
+- /tmp: Temporary files
+- /var/log: System logs
+
+### Archive Mirrors
+
+- Repository servers
+- Package distribution
+- Geographic distribution
+- Load balancing
+
 ---
 
 💻 ![Configuration](https://img.shields.io/badge/Configuration-purple?style=flat&logo=terminal&logoColor=white)
+
+---
+
+⭐ ![Bonus](https://img.shields.io/badge/Bonus-gold?style=flat&logo=star&logoColor=white)
