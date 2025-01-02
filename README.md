@@ -1906,9 +1906,29 @@ Defaults  requiretty
 sudo touch /usr/local/bin/monitoring.sh
 sudo chmod +x /usr/local/bin/monitoring.sh
 sudo crontab -e
-# Add: @reboot sleep 600 && /usr/local/bin/monitoring.sh
+# Add: @reboot while true; do sleep 600 && /usr/local/bin/monitoring.sh; done
 sudo crontab -l
 sudo nano /usr/local/bin/monitoring.sh
+```
+
+add the following commands
+
+```bash
+#!/bin/bash
+wall "
+        #Architecture:          $(uname -a)
+        #CPU physical:          $(lscpu | grep 'So' | awk '{print $2}')
+        #vCPU:                  $(lscpu | grep '^CPU(s)' | awk '{print $2}')
+        #Memory Usage:          $(free -m | grep 'M' | awk '{print $3 "/" $2 "MB (" sprintf("%.2f", $3/$2*100) "%)"}')
+        #Disk Usage:            $(df -BM | grep 'dev' | grep -v 'boot$' |awk '{total+=2; used+=3} END {print used "/" total/1024 "GB (" int(used/total*100) "%"}')
+        #CPU load:              $(top -bn1 | grep 'Cpu' | awk '{print sprintf("%.1f", $3 + $1) "%"}')
+        #Last boot:             $(who -b | awk '{print $3, $4}')
+        #LVM use:               $(lsblk | grep -q 'lvm' && echo yes || echo no)
+        #Connections TCP:       $(ss -tH state ESTABLISHED | wc -l) ESTABLISHED
+        #User log:              $(users | sort | uniq | wc -w) ESTABLISHED
+        # Network:              IP $(hostname -I) ($(ip link | grep 'ether' | awk '{print $2}'))
+        #Sudo:                   $(cat /var/log/sudo/sudo.log | grep 'COMMAND' | wc -l) cmd
+"
 ```
 
 To interrupt the script, first find its process using ps then kill it
