@@ -1886,6 +1886,7 @@ sudo chage -M 30 -m 2 <username>
 ```bash
 sudo mkdir -p /var/log/sudo
 sudo chmod 700 /var/log/sudo
+sudo touch /var/log/sudo/sudo.log
 sudo visudo
 ```
 
