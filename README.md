@@ -112,6 +112,35 @@ Essential questions and answers that arose during the Born2beRoot project develo
 
 ## ⭐ Bonus
 
+### Web Server Setup
+
+- [Lighttpd Installation and Configuration](#lighttpd-installation-and-configuration)
+  - [Basic Setup](#basic-setup)
+  - [PHP Configuration](#php-configuration)
+  - [FastCGI Setup](#fastcgi-setup)
+
+### Database Configuration
+
+- [MariaDB Setup](#mariadb-setup)
+  - [Initial Security Configuration](#initial-security-configuration)
+  - [Database Creation](#database-creation)
+  - [User Management](#user-management)
+
+### WordPress Installation
+
+- [WordPress Setup](#wordpress-setup)
+  - [File Configuration](#file-configuration)
+  - [Database Integration](#database-integration)
+  - [Permission Management](#permission-management)
+
+### Service of choice
+
+- [ClamAV Configuration](#clamav-configuration)
+  - [Installation](#installation)
+  - [Daemon Setup](#daemon-setup)
+  - [Scan Configuration](#scan-configuration)
+  - [Automated Scanning](#automated-scanning)
+
 ---
 
 📚 ![General Knowledge](https://img.shields.io/badge/General_Knowledge-green?style=flat&logo=openbook&labelColor=green&logoColor=white)
@@ -1948,3 +1977,205 @@ sudo pkill -f monitoring.sh
 ---
 
 ⭐ ![Bonus](https://img.shields.io/badge/Bonus-gold?style=flat&logo=star&logoColor=white)
+
+## 1. Initial System Setup
+
+Update package lists and install required packages:
+
+```bash
+# Updates the package list to ensure you get the latest versions
+sudo apt update
+
+# Installs the required packages:
+# lighttpd: A lightweight web server
+# mariadb-server: Database server for storing WordPress data
+# php-cgi: PHP interpreter for processing PHP files
+# php-mysql: PHP extension for MySQL database connectivity
+# wget: Tool for downloading files from the internet
+# tar: Tool for extracting compressed files
+sudo apt install lighttpd mariadb-server php-cgi php-mysql wget tar
+```
+
+Check and remove Apache2 if installed (Apache2 can conflict with Lighttpd as both use port 80):
+
+```bash
+# Check if Apache2 is running
+sudo systemctl status apache2
+
+# Remove Apache2 completely
+sudo apt purge apache2
+
+# Remove any remaining dependencies
+sudo apt autoremove
+```
+
+## 2. Configure Firewall
+
+Set up firewall rules:
+
+```bash
+# Allow incoming HTTP traffic (port 80)
+sudo ufw allow http
+
+# Check firewall status and rules
+sudo ufw status
+```
+
+## 3. Configure Lighttpd
+
+Enable PHP support in Lighttpd:
+
+```bash
+# Enable FastCGI module for better performance
+sudo lighty-enable-mod fastcgi
+
+# Enable PHP support through FastCGI
+sudo lighty-enable-mod fastcgi-php
+
+# Reload Lighttpd to apply changes
+sudo service lighttpd force-reload
+```
+
+## 4. Configure MariaDB
+
+Secure the database server:
+
+```bash
+# Run the security script to set up MariaDB securely
+sudo mysql_secure_installation
+```
+
+Follow these prompts with explanations:
+
+```
+Enter current password: Press Enter (none by default)
+Switch to unix_socket authentication: Y (More secure authentication method)
+Set root password: Y (Creates admin password)
+  New password: said
+  Re-enter password: said
+Remove anonymous users: Y (Improves security)
+Disallow root login remotely: Y (Prevents remote root access)
+Remove test database: Y (Removes unnecessary test database)
+Reload privilege tables: Y (Applies all changes)
+```
+
+```bash
+# Restart MariaDB to apply all security changes
+sudo systemctl restart MariaDB
+```
+
+## 5. Create WordPress Database
+
+Access MySQL command line:
+
+```bash
+# Log into MySQL as root user with password authentication
+mysql -u root -p
+```
+
+Set up WordPress database and user:
+
+```sql
+# Create a new database for WordPress
+CREATE DATABASE schahir_db;
+
+# Create a new user 'schahir' with password 'said' and grant all permissions on the WordPress database
+GRANT ALL ON wordpress.* TO 'schahir'@'localhost' IDENTIFIED BY 'said';
+
+# Apply the privilege changes immediately
+FLUSH PRIVILEGES;
+
+# Exit MySQL command line
+EXIT;
+```
+
+## 6. Install WordPress
+
+Download and set up WordPress files:
+
+```bash
+# Change to web server directory
+cd /var/www/html
+
+# Download latest WordPress
+sudo wget http://wordpress.org/latest.tar.gz
+
+# Extract WordPress archive
+sudo tar -xzvf latest.tar.gz
+
+# Move WordPress files to current directory
+sudo mv wordpress/* .
+
+# Clean up unnecessary files
+rm -rf wordpress latest.tar.gz
+```
+
+Set correct permissions:
+
+```bash
+# Make web server user (www-data) the owner of WordPress files
+chown -R www-data:www-data /var/www/html
+
+# Set correct file permissions (755 allows read and execute for everyone, write for owner)
+chmod -R 755 /var/www/html
+```
+
+Configure WordPress:
+
+```bash
+# Create WordPress config file from sample
+sudo mv wp-config-sample.php wp-config.php
+
+# Open config file for editing
+sudo nano wp-config.php
+```
+
+Edit database configuration:
+
+```php
+<?php
+/* ... */
+/** Set database name */
+define( 'DB_NAME', 'schahir_db' );
+/** Set database username */
+define( 'DB_USER', 'schahir' );
+/** Set database password */
+define( 'DB_PASSWORD', 'said' );
+```
+
+```bash
+# Restart web server to apply all changes
+sudo systemctl restart lighttpd
+```
+
+---
+
+## 7. ClamAV-daemon service Installation and Configuration
+
+ClamAV is an open-source antivirus engine for detecting trojans, viruses, malware, and other malicious threats.
+
+Install ClamAV and it's background service:
+
+```bash
+# Install ClamAV and its daemon (background service)
+sudo apt install clamav clamav-daemon
+```
+
+Update and start antivirus:
+
+```bash
+# Download latest virus definitions
+sudo freshclam
+
+# Start the ClamAV daemon
+sudo systemctl start clamav-daemon
+
+# Configure ClamAV to start on boot
+sudo systemctl enable clamav-daemon
+
+# Check if ClamAV daemon is running properly
+sudo systemctl status clamav-daemon
+
+# Perform a full system scan (recursive scan from root directory)
+sudo clamscan -r /
+```
