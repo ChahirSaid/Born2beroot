@@ -1934,7 +1934,7 @@ Defaults  requiretty
 ### 8. Monitoring Script Setup
 
 ```
-sudo apt install sysstat
+sudo apt install sysstat -y
 sudo touch /usr/local/bin/monitoring.sh
 sudo chmod +x /usr/local/bin/monitoring.sh
 sudo nano /usr/local/bin/monitoring.sh
