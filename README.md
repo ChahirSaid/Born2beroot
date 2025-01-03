@@ -1927,6 +1927,7 @@ Defaults  badpass_message="Invalid password!"
 Defaults  log_input
 Defaults  log_output
 Defaults  iolog_dir="/var/log/sudo"
+Defaults  logfile="/var/log/sudo/sudo.log"
 Defaults  requiretty
 ```
 
