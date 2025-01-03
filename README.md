@@ -1936,9 +1936,6 @@ Defaults  requiretty
 ```bash
 sudo touch /usr/local/bin/monitoring.sh
 sudo chmod +x /usr/local/bin/monitoring.sh
-sudo crontab -e
-# Add: @reboot while true; do sleep 600 && /usr/local/bin/monitoring.sh; done
-sudo crontab -l
 sudo nano /usr/local/bin/monitoring.sh
 ```
 
@@ -1960,6 +1957,14 @@ wall "
         # Network:              IP $(hostname -I) ($(ip link | grep 'ether' | awk '{print $2}'))
         #Sudo:                   $(cat /var/log/sudo/sudo.log | grep 'COMMAND' | wc -l) cmd
 "
+```
+
+update crontab so it will run monitoring.sh every 10 minutes after reboot
+
+```
+sudo crontab -e
+# Add: @reboot while true; do sleep 600 && /usr/local/bin/monitoring.sh; done
+sudo crontab -l
 ```
 
 To interrupt the script, first find its process using ps then kill it
