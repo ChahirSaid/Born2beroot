@@ -1933,7 +1933,8 @@ Defaults  requiretty
 
 ### 8. Monitoring Script Setup
 
-```bash
+```
+sudo apt install sysstat
 sudo touch /usr/local/bin/monitoring.sh
 sudo chmod +x /usr/local/bin/monitoring.sh
 sudo nano /usr/local/bin/monitoring.sh
@@ -1949,7 +1950,7 @@ wall "
         #vCPU:                  $(lscpu | grep '^CPU(s)' | awk '{print $2}')
         #Memory Usage:          $(free -m | grep 'M' | awk '{print $3 "/" $2 "MB (" sprintf("%.2f", $3/$2*100) "%)"}')
         #Disk Usage:            $(df -BM | grep 'dev' | grep -v 'boot$' |awk '{total+=2; used+=3} END {print used "/" total/1024 "GB (" int(used/total*100) "%"}')
-        #CPU load:              $(top -bn1 | grep 'Cpu' | awk '{print sprintf("%.1f", $3 + $1) "%"}')
+        #CPU load:              $(mpstat 3 1 | awk '/Average:/ {print 100 - $NF}')
         #Last boot:             $(who -b | awk '{print $3, $4}')
         #LVM use:               $(lsblk | grep -q 'lvm' && echo yes || echo no)
         #Connections TCP:       $(ss -tH state ESTABLISHED | wc -l) ESTABLISHED
@@ -1966,6 +1967,20 @@ sudo crontab -e
 # Add: @reboot while true; do sleep 600 && /usr/local/bin/monitoring.sh; done
 sudo crontab -l
 sudo reboot
+```
+try stressing the cpu to see if cpu loads works fine
+
+```
+sudo apt install stress
+stress --cpu 100 &
+```
+
+to stop stressing the commands run 
+
+```
+jobs
+
+kill %<id>
 ```
 
 To interrupt the script, first find its process using ps then kill it
