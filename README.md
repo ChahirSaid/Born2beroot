@@ -1965,6 +1965,7 @@ update crontab so it will run monitoring.sh every 10 minutes after reboot
 sudo crontab -e
 # Add: @reboot while true; do sleep 600 && /usr/local/bin/monitoring.sh; done
 sudo crontab -l
+sudo reboot
 ```
 
 To interrupt the script, first find its process using ps then kill it
