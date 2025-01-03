@@ -1950,7 +1950,7 @@ wall "
         #vCPU:                  $(lscpu | grep '^CPU(s)' | awk '{print $2}')
         #Memory Usage:          $(free -m | grep 'M' | awk '{print $3 "/" $2 "MB (" sprintf("%.2f", $3/$2*100) "%)"}')
         #Disk Usage:            $(df -BM | grep 'dev' | grep -v 'boot$' |awk '{total+=2; used+=3} END {print used "/" total/1024 "GB (" int(used/total*100) "%"}')
-        #CPU load:              $(mpstat 3 1 | awk '/Average:/ {print 100 - $NF}')
+        #CPU load:              $(mpstat 3 1 | awk '/Average:/ {print 100 - $NF"%"}')
         #Last boot:             $(who -b | awk '{print $3, $4}')
         #LVM use:               $(lsblk | grep -q 'lvm' && echo yes || echo no)
         #Connections TCP:       $(ss -tH state ESTABLISHED | wc -l) ESTABLISHED
