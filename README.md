@@ -2107,6 +2107,9 @@ GRANT ALL ON wordpress.* TO 'schahir'@'localhost' IDENTIFIED BY 'said';
 # Apply the privilege changes immediately
 FLUSH PRIVILEGES;
 
+#check if db was successfully created
+show databases;
+
 # Exit MySQL command line
 EXIT;
 ```
