@@ -1949,7 +1949,7 @@ wall "
         #CPU physical:          $(lscpu | grep 'So' | awk '{print $2}')
         #vCPU:                  $(lscpu | grep '^CPU(s)' | awk '{print $2}')
         #Memory Usage:          $(free -m | grep 'M' | awk '{print $3 "/" $2 "MB (" sprintf("%.2f", $3/$2*100) "%)"}')
-        #Disk Usage:            $(df -BM | grep 'dev' | grep -v 'boot$' |awk '{total+=$2; used+=$3} END {print used "/" total/1024 "GB (" int(used/total*100) "%"}')
+        #Disk Usage:            $(df -BM | grep '^/dev' | awk '{total+=$2; used+=$3} END {printf "%d/%.2fGb (%d%%)", used, total/1024, used/total*100}')
         #CPU load:              $(mpstat 1 1 | awk '/Average:/ {print 100 - $NF"%"}')
         #Last boot:             $(who -b | awk '{print $3, $4}')
         #LVM use:               $(lsblk | grep -q 'lvm' && echo yes || echo no)
