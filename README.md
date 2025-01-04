@@ -2132,7 +2132,7 @@ sudo tar -xzvf latest.tar.gz
 sudo mv wordpress/* .
 
 # Clean up unnecessary files
-rm -rf wordpress latest.tar.gz
+sudo rm -rf wordpress latest.tar.gz
 ```
 
 Set correct permissions:
