@@ -2184,6 +2184,8 @@ Install ClamAV and it's background service:
 ```bash
 # Install ClamAV and its daemon (background service)
 sudo apt install clamav clamav-daemon -y
+sudo chown clamav:clamav /var/log/clamav/freshclam.log
+sudo chmod 644 /var/log/clamav/freshclam.log
 ```
 
 Update and start antivirus:
