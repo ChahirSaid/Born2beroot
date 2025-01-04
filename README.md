@@ -2015,7 +2015,7 @@ sudo apt update
 # php-mysql: PHP extension for MySQL database connectivity
 # wget: Tool for downloading files from the internet
 # tar: Tool for extracting compressed files
-sudo apt install lighttpd mariadb-server php-cgi php-mysql wget tar
+sudo apt install lighttpd mariadb-server php-cgi php-mysql wget tar -y
 ```
 
 Check and remove Apache2 if installed (Apache2 can conflict with Lighttpd as both use port 80):
