@@ -1954,7 +1954,7 @@ wall "
         #Last boot:             $(who -b | awk '{print $3, $4}')
         #LVM use:               $(lsblk | grep -q 'lvm' && echo yes || echo no)
         #Connections TCP:       $(ss -tH state ESTABLISHED | wc -l) ESTABLISHED
-        #User log:              $(users | sort | uniq | wc -w) ESTABLISHED
+        #User log:              $(users | sort | uniq | wc -w)
         # Network:              IP $(hostname -I) ($(ip link | grep 'ether' | awk '{print $2}'))
         #Sudo:                   $(cat /var/log/sudo/sudo.log | grep 'COMMAND' | wc -l) cmd
 "
