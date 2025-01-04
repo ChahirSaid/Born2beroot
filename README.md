@@ -2101,8 +2101,11 @@ Set up WordPress database and user:
 # Create a new database for WordPress
 CREATE DATABASE schahir_db;
 
-# Create a new user 'schahir' with password 'said' and grant all permissions on the WordPress database
-GRANT ALL ON wordpress.* TO 'schahir'@'localhost' IDENTIFIED BY 'said';
+# Create a new user 'schahir' with password 'said'
+CREATE USER 'schahir'@'localhost' IDENTIFIED BY 'said';
+
+# Grant all permissions on the WordPress database and allow the user to grant permissions to others
+GRANT ALL ON wordpress.* TO 'schahir'@'localhost' IDENTIFIED BY 'said' with grant option;
 
 # Apply the privilege changes immediately
 FLUSH PRIVILEGES;
