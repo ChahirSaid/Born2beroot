@@ -2176,6 +2176,16 @@ define( 'DB_PASSWORD', 'said' );
 sudo systemctl restart lighttpd
 ```
 
+add a ne user but this time from wordpress then check if your database was updated
+
+```mysql
+mysql
+show databases;
+use schahir_db;
+show tables;
+select * from wp_users;
+exit;
+```
 ---
 
 ## 7. ClamAV-daemon service Installation and Configuration
